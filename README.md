@@ -1,125 +1,125 @@
 # OkiMC-EdToolsPerks
 
-Sistema de perks tipo gacha para EdTools. Los jugadores pueden hacer "rolls" para obtener perks que dan boosts permanentes a sus herramientas.
+Gacha-style perk system for EdTools. Players can roll for perks that provide permanent boosts to their tools.
 
-## Requisitos
+## Requirements
 
 - Paper/Spigot 1.20+
 - Java 17+
-- [EdTools](https://polymart.org/resource/edtools.4012) (dependencia requerida)
-- PlaceholderAPI (opcional)
+- [EdTools](https://polymart.org/resource/edtools.4012) (required dependency)
+- PlaceholderAPI (optional)
 
-## Caracteristicas
+## Features
 
-### Sistema Gacha
-- **6 categorias de rareza**: Comun, Poco Comun, Rara, Epica, Legendaria, Morada
-- **Sistema de Pity**: Garantiza perk de categoria alta despues de X rolls sin obtener una
-- **Animacion de roll**: GUI animada al momento de hacer roll
-- **Niveles de perk**: Los perks pueden subir de nivel al obtener duplicados
+### Gacha System
+- **6 rarity tiers**: Common, Uncommon, Rare, Epic, Legendary, Mythic (Morada)
+- **Pity system**: Guarantees high-tier perk after X rolls without getting one
+- **Roll animation**: Animated GUI when rolling
+- **Perk levels**: Perks can level up when getting duplicates
 
-### Perks por Herramienta
-- Cada herramienta de EdTools tiene su propio pool de perks
-- Los perks dan boosts a diferentes currencies (orbes, monedas, exp, etc.)
-- Soporte para boosters de encantamientos globales
+### Per-Tool Perks
+- Each EdTools tool has its own perk pool
+- Perks boost different currencies (orbs, coins, exp, etc.)
+- Support for global enchantment boosters
 
-### Base de Datos
-- SQLite (por defecto) o MySQL
-- Connection pooling con HikariCP
-- Operaciones asincronas
+### Database
+- SQLite (default) or MySQL
+- Connection pooling with HikariCP
+- Async operations
 
-### Integracion
-- **EdTools**: Usa la moneda configurada para comprar rolls
-- **PlaceholderAPI**: Placeholders para mostrar info de perks
+### Integration
+- **EdTools**: Uses configured currency to purchase rolls
+- **PlaceholderAPI**: Placeholders to display perk info
 
-## Comandos
+## Commands
 
-| Comando | Descripcion | Permiso |
-|---------|-------------|---------|
-| `/perks` | Abre el menu principal | `edtoolsperks.use` |
-| `/perks help` | Muestra ayuda | `edtoolsperks.use` |
-| `/perks reload` | Recarga configuraciones | `edtoolsperks.admin.reload` |
-| `/perks rolls <player> <add/set/remove> <amount>` | Gestiona rolls | `edtoolsperks.admin.rolls` |
-| `/perks perk <player> <perk> <level>` | Asigna perk a jugador | `edtoolsperks.admin.perks` |
-| `/perks removeperk <player> <tool>` | Remueve perk de herramienta | `edtoolsperks.admin.perks` |
-| `/perks resetpity <player>` | Reinicia contador de pity | `edtoolsperks.admin.pity` |
-| `/perks debug` | Toggle modo debug | `edtoolsperks.admin.debug` |
+| Command | Description | Permission |
+|---------|-------------|------------|
+| `/perks` | Opens main menu | `edtoolsperks.use` |
+| `/perks help` | Shows help | `edtoolsperks.use` |
+| `/perks reload` | Reloads configurations | `edtoolsperks.admin.reload` |
+| `/perks rolls <player> <add/set/remove> <amount>` | Manage rolls | `edtoolsperks.admin.rolls` |
+| `/perks perk <player> <perk> <level>` | Assign perk to player | `edtoolsperks.admin.perks` |
+| `/perks removeperk <player> <tool>` | Remove perk from tool | `edtoolsperks.admin.perks` |
+| `/perks resetpity <player>` | Reset pity counter | `edtoolsperks.admin.pity` |
+| `/perks debug` | Toggle debug mode | `edtoolsperks.admin.debug` |
 
 **Aliases**: `/perk`, `/edtoolsperks`, `/etp`
 
-## Permisos
+## Permissions
 
-| Permiso | Descripcion | Default |
-|---------|-------------|---------|
-| `edtoolsperks.*` | Acceso completo | op |
-| `edtoolsperks.use` | Uso basico (GUI, info) | true |
-| `edtoolsperks.admin` | Todos los comandos admin | op |
-| `edtoolsperks.admin.reload` | Recargar configs | op |
-| `edtoolsperks.admin.rolls` | Gestionar rolls | op |
-| `edtoolsperks.admin.perks` | Gestionar perks | op |
-| `edtoolsperks.admin.pity` | Resetear pity | op |
-| `edtoolsperks.admin.debug` | Modo debug | op |
+| Permission | Description | Default |
+|------------|-------------|---------|
+| `edtoolsperks.*` | Full access | op |
+| `edtoolsperks.use` | Basic usage (GUI, info) | true |
+| `edtoolsperks.admin` | All admin commands | op |
+| `edtoolsperks.admin.reload` | Reload configs | op |
+| `edtoolsperks.admin.rolls` | Manage rolls | op |
+| `edtoolsperks.admin.perks` | Manage perks | op |
+| `edtoolsperks.admin.pity` | Reset pity | op |
+| `edtoolsperks.admin.debug` | Debug mode | op |
 
 ## Placeholders
 
-Requiere PlaceholderAPI.
+Requires PlaceholderAPI.
 
-### Generales
-- `%edtoolsperks_rolls%` - Rolls disponibles
-- `%edtoolsperks_pity%` - Contador de pity actual
-- `%edtoolsperks_pity_threshold%` - Threshold de pity
-- `%edtoolsperks_pity_progress%` - Progreso (count/threshold)
-- `%edtoolsperks_pity_percent%` - Progreso en porcentaje
-- `%edtoolsperks_perk_count%` - Numero de perks activos
-- `%edtoolsperks_animations%` - Estado de animaciones
+### General
+- `%edtoolsperks_rolls%` - Available rolls
+- `%edtoolsperks_pity%` - Current pity counter
+- `%edtoolsperks_pity_threshold%` - Pity threshold
+- `%edtoolsperks_pity_progress%` - Progress (count/threshold)
+- `%edtoolsperks_pity_percent%` - Progress as percentage
+- `%edtoolsperks_perk_count%` - Number of active perks
+- `%edtoolsperks_animations%` - Animation status
 
-### Por Herramienta
-Reemplaza `<tool>` con el ID de herramienta de EdTools (ej: `pickaxe`, `axe`, `hoe`, `shovel`)
+### Per Tool
+Replace `<tool>` with EdTools tool ID (e.g., `pickaxe`, `axe`, `hoe`, `shovel`)
 
-- `%edtoolsperks_perk_<tool>%` - Nombre del perk (con color)
-- `%edtoolsperks_perk_<tool>_level%` - Nivel del perk
-- `%edtoolsperks_perk_<tool>_category%` - Categoria
-- `%edtoolsperks_perk_<tool>_boost%` - Descripcion del boost
+- `%edtoolsperks_perk_<tool>%` - Perk name (with color)
+- `%edtoolsperks_perk_<tool>_level%` - Perk level
+- `%edtoolsperks_perk_<tool>_category%` - Category
+- `%edtoolsperks_perk_<tool>_boost%` - Boost description
 - `%edtoolsperks_has_perk_<tool>%` - true/false
 
-## Configuracion
+## Configuration
 
 ### config.yml
-- Configuracion de base de datos
-- Definicion de categorias y sus propiedades
-- Sistema de pity (threshold, categoria garantizada)
-- Configuracion de animacion
-- Nombres de display para currencies y herramientas
+- Database configuration
+- Category definitions and properties
+- Pity system (threshold, guaranteed category)
+- Animation settings
+- Display names for currencies and tools
 
 ### perks.yml
-- Definicion de todos los perks disponibles
-- Cada perk tiene: nombre, descripcion, herramienta, categoria, chance, niveles con boosts
+- Definition of all available perks
+- Each perk has: name, description, tool, category, chance, levels with boosts
 
 ### messages.yml
-- Todos los mensajes del plugin (100% configurable)
+- All plugin messages (100% configurable)
 
 ### guis.yml
-- Configuracion de las interfaces graficas
+- GUI configuration
 
-## Instalacion
+## Installation
 
-1. Descargar el JAR de [Releases](../../releases)
-2. Colocar en la carpeta `plugins/`
-3. Asegurar que EdTools esta instalado
-4. Reiniciar el servidor
-5. Configurar `config.yml` y `perks.yml` segun necesidad
+1. Download the JAR from [Releases](../../releases)
+2. Place in `plugins/` folder
+3. Make sure EdTools is installed
+4. Restart the server
+5. Configure `config.yml` and `perks.yml` as needed
 
-## Compilacion
+## Building
 
 ```bash
 mvn clean package
 ```
 
-El JAR se genera en `target/OkiMC-EdToolsPerks-2.0.0.jar`
+The JAR is generated at `target/OkiMC-EdToolsPerks-2.0.0.jar`
 
-## Autor
+## Author
 
 **Snopeyy** - [OkiMC](https://okimc.com)
 
-## Licencia
+## License
 
-Uso privado - OkiMC Network
+Private use - OkiMC Network
