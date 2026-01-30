@@ -1,0 +1,483 @@
+# ========================================
+# EdToolsPerks v2.0.0 - Perks Configuration
+# Author: Snopeyy
+# ========================================
+#
+# IMPORTANT: Use EdTools IDs directly!
+# - For "tool": Use your EdTools OmniTool ID (e.g., "crop-tool", "mining-tool")
+# - For "boost-types": Use your EdTools currency IDs (e.g., "orbes", "farm-coins", "esencias")
+#
+# Perk Structure:
+# perk-key:
+#   display-name: "Display Name"
+#   description: "What this perk does"
+#   tool: <your-edtools-omnitool-id>  # e.g., crop-tool, mining-tool, etc.
+#   category: comun|poco-comun|rara|epica|legendaria|morada
+#   chance: 10.0  # Base chance percentage
+#   material: DIAMOND_PICKAXE  # Display material in GUI
+#   texture: "base64..."  # Optional custom head texture
+#   levels:
+#     1:
+#       boost-types: [orbes, farm-coins]  # Use EdTools currency IDs!
+#       boost-amounts: [5, 3]
+#     2:
+#       boost-types: [orbes, farm-coins]
+#       boost-amounts: [10, 6]
+#
+# Categories are defined in config.yml under the "categories" section.
+# Available categories: comun, poco-comun, rara, epica, legendaria, morada
+# You can add/remove categories in config.yml
+#
+# NOTE: The example perks below use placeholder tool types.
+# You MUST change them to match YOUR EdTools OmniTool IDs!
+
+# ==================== Perks Definition ====================
+perks:
+  # ========== PICKAXE PERKS ==========
+
+  # Common Tier
+  miner-novice:
+    display-name: "Minero Novato"
+    description: "Un pequeno boost para empezar"
+    tool: pickaxe
+    category: comun
+    chance: 30.0
+    material: IRON_PICKAXE
+    levels:
+      1:
+        boost-types: [coins]
+        boost-amounts: [2]
+      2:
+        boost-types: [coins]
+        boost-amounts: [4]
+      3:
+        boost-types: [coins]
+        boost-amounts: [6]
+
+  stone-breaker:
+    display-name: "Rompe Piedras"
+    description: "Mas monedas al minar piedra"
+    tool: pickaxe
+    category: comun
+    chance: 25.0
+    material: STONE_PICKAXE
+    levels:
+      1:
+        boost-types: [coins]
+        boost-amounts: [3]
+      2:
+        boost-types: [coins]
+        boost-amounts: [6]
+
+  # Uncommon Tier
+  ore-finder:
+    display-name: "Buscador de Ores"
+    description: "Aumenta ganancias de minerales"
+    tool: pickaxe
+    category: poco-comun
+    chance: 20.0
+    material: GOLDEN_PICKAXE
+    levels:
+      1:
+        boost-types: [coins, orbs]
+        boost-amounts: [5, 2]
+      2:
+        boost-types: [coins, orbs]
+        boost-amounts: [8, 4]
+      3:
+        boost-types: [coins, orbs]
+        boost-amounts: [12, 6]
+
+  deep-miner:
+    display-name: "Minero Profundo"
+    description: "Mejor rendimiento bajo tierra"
+    tool: pickaxe
+    category: poco-comun
+    chance: 18.0
+    material: DEEPSLATE
+    levels:
+      1:
+        boost-types: [coins]
+        boost-amounts: [7]
+      2:
+        boost-types: [coins]
+        boost-amounts: [12]
+
+  # Rare Tier
+  fortune-touch:
+    display-name: "Toque de Fortuna"
+    description: "Mas recursos al minar"
+    tool: pickaxe
+    category: rara
+    chance: 10.0
+    material: DIAMOND_PICKAXE
+    levels:
+      1:
+        boost-types: [coins, orbs]
+        boost-amounts: [10, 5]
+      2:
+        boost-types: [coins, orbs]
+        boost-amounts: [15, 8]
+      3:
+        boost-types: [coins, orbs]
+        boost-amounts: [20, 12]
+
+  vein-master:
+    display-name: "Maestro de Vetas"
+    description: "Especialista en minerales"
+    tool: pickaxe
+    category: rara
+    chance: 8.0
+    material: EMERALD_ORE
+    levels:
+      1:
+        boost-types: [coins, orbs]
+        boost-amounts: [12, 6]
+      2:
+        boost-types: [coins, orbs]
+        boost-amounts: [18, 10]
+
+  # Epic Tier
+  diamond-heart:
+    display-name: "Corazon de Diamante"
+    description: "El poder de los diamantes"
+    tool: pickaxe
+    category: epica
+    chance: 4.0
+    material: DIAMOND_BLOCK
+    levels:
+      1:
+        boost-types: [coins, orbs, exp]
+        boost-amounts: [15, 10, 5]
+      2:
+        boost-types: [coins, orbs, exp]
+        boost-amounts: [25, 15, 10]
+      3:
+        boost-types: [coins, orbs, exp]
+        boost-amounts: [35, 22, 15]
+
+  # Legendary Tier
+  ancient-miner:
+    display-name: "Minero Ancestral"
+    description: "Sabiduria de los antiguos mineros"
+    tool: pickaxe
+    category: legendaria
+    chance: 1.5
+    material: NETHERITE_PICKAXE
+    levels:
+      1:
+        boost-types: [coins, orbs, exp]
+        boost-amounts: [25, 15, 10]
+      2:
+        boost-types: [coins, orbs, exp]
+        boost-amounts: [40, 25, 18]
+      3:
+        boost-types: [coins, orbs, exp]
+        boost-amounts: [60, 40, 25]
+
+  # Morada Tier (Pity guaranteed)
+  void-pickaxe:
+    display-name: "Pico del Vacio"
+    description: "Poder del End en tus manos"
+    tool: pickaxe
+    category: morada
+    chance: 0.5
+    material: END_CRYSTAL
+    levels:
+      1:
+        boost-types: [coins, orbs, exp]
+        boost-amounts: [35, 25, 15]
+      2:
+        boost-types: [coins, orbs, exp]
+        boost-amounts: [55, 40, 25]
+      3:
+        boost-types: [coins, orbs, exp]
+        boost-amounts: [80, 60, 40]
+      4:
+        boost-types: [coins, orbs, exp]
+        boost-amounts: [100, 80, 50]
+
+  # ========== AXE PERKS ==========
+
+  woodcutter-novice:
+    display-name: "Lenador Novato"
+    description: "Inicio en la tala"
+    tool: axe
+    category: comun
+    chance: 30.0
+    material: IRON_AXE
+    levels:
+      1:
+        boost-types: [coins]
+        boost-amounts: [2]
+      2:
+        boost-types: [coins]
+        boost-amounts: [4]
+
+  tree-hugger:
+    display-name: "Abraza Arboles"
+    description: "Conexion con la naturaleza"
+    tool: axe
+    category: poco-comun
+    chance: 18.0
+    material: GOLDEN_AXE
+    levels:
+      1:
+        boost-types: [coins, orbs]
+        boost-amounts: [6, 3]
+      2:
+        boost-types: [coins, orbs]
+        boost-amounts: [10, 5]
+
+  lumber-master:
+    display-name: "Maestro Lenador"
+    description: "Experto en tala"
+    tool: axe
+    category: rara
+    chance: 8.0
+    material: DIAMOND_AXE
+    levels:
+      1:
+        boost-types: [coins, orbs]
+        boost-amounts: [12, 8]
+      2:
+        boost-types: [coins, orbs]
+        boost-amounts: [20, 12]
+
+  forest-spirit:
+    display-name: "Espiritu del Bosque"
+    description: "Bendicion de los arboles"
+    tool: axe
+    category: epica
+    chance: 3.5
+    material: OAK_SAPLING
+    levels:
+      1:
+        boost-types: [coins, orbs, exp]
+        boost-amounts: [18, 12, 8]
+      2:
+        boost-types: [coins, orbs, exp]
+        boost-amounts: [30, 20, 15]
+
+  ancient-oak:
+    display-name: "Roble Ancestral"
+    description: "Poder del bosque antiguo"
+    tool: axe
+    category: legendaria
+    chance: 1.5
+    material: NETHERITE_AXE
+    levels:
+      1:
+        boost-types: [coins, orbs, exp]
+        boost-amounts: [30, 20, 12]
+      2:
+        boost-types: [coins, orbs, exp]
+        boost-amounts: [50, 35, 22]
+
+  world-tree:
+    display-name: "Arbol del Mundo"
+    description: "El poder del Yggdrasil"
+    tool: axe
+    category: morada
+    chance: 0.5
+    material: NETHER_STAR
+    levels:
+      1:
+        boost-types: [coins, orbs, exp]
+        boost-amounts: [40, 30, 18]
+      2:
+        boost-types: [coins, orbs, exp]
+        boost-amounts: [65, 50, 30]
+      3:
+        boost-types: [coins, orbs, exp]
+        boost-amounts: [90, 70, 45]
+
+  # ========== SHOVEL PERKS ==========
+
+  digger-novice:
+    display-name: "Excavador Novato"
+    description: "Primeros pasos excavando"
+    tool: shovel
+    category: comun
+    chance: 30.0
+    material: IRON_SHOVEL
+    levels:
+      1:
+        boost-types: [coins]
+        boost-amounts: [2]
+      2:
+        boost-types: [coins]
+        boost-amounts: [4]
+
+  earth-mover:
+    display-name: "Mueve Tierras"
+    description: "Eficiencia al excavar"
+    tool: shovel
+    category: poco-comun
+    chance: 18.0
+    material: GOLDEN_SHOVEL
+    levels:
+      1:
+        boost-types: [coins, orbs]
+        boost-amounts: [6, 3]
+      2:
+        boost-types: [coins, orbs]
+        boost-amounts: [10, 5]
+
+  archaeologist:
+    display-name: "Arqueologo"
+    description: "Encuentra tesoros enterrados"
+    tool: shovel
+    category: rara
+    chance: 8.0
+    material: DIAMOND_SHOVEL
+    levels:
+      1:
+        boost-types: [coins, orbs]
+        boost-amounts: [12, 8]
+      2:
+        boost-types: [coins, orbs]
+        boost-amounts: [20, 12]
+
+  earth-shaker:
+    display-name: "Sacude Tierras"
+    description: "Dominio sobre la tierra"
+    tool: shovel
+    category: epica
+    chance: 3.5
+    material: GRASS_BLOCK
+    levels:
+      1:
+        boost-types: [coins, orbs, exp]
+        boost-amounts: [18, 12, 8]
+      2:
+        boost-types: [coins, orbs, exp]
+        boost-amounts: [30, 20, 15]
+
+  terraformer:
+    display-name: "Terraformador"
+    description: "Moldea el mundo"
+    tool: shovel
+    category: legendaria
+    chance: 1.5
+    material: NETHERITE_SHOVEL
+    levels:
+      1:
+        boost-types: [coins, orbs, exp]
+        boost-amounts: [30, 20, 12]
+      2:
+        boost-types: [coins, orbs, exp]
+        boost-amounts: [50, 35, 22]
+
+  core-digger:
+    display-name: "Excavador del Nucleo"
+    description: "Llega al centro del mundo"
+    tool: shovel
+    category: morada
+    chance: 0.5
+    material: MAGMA_BLOCK
+    levels:
+      1:
+        boost-types: [coins, orbs, exp]
+        boost-amounts: [40, 30, 18]
+      2:
+        boost-types: [coins, orbs, exp]
+        boost-amounts: [65, 50, 30]
+      3:
+        boost-types: [coins, orbs, exp]
+        boost-amounts: [90, 70, 45]
+
+  # ========== HOE PERKS ==========
+
+  farmer-novice:
+    display-name: "Granjero Novato"
+    description: "Inicio en la agricultura"
+    tool: hoe
+    category: comun
+    chance: 30.0
+    material: IRON_HOE
+    levels:
+      1:
+        boost-types: [coins]
+        boost-amounts: [2]
+      2:
+        boost-types: [coins]
+        boost-amounts: [4]
+
+  crop-master:
+    display-name: "Maestro de Cultivos"
+    description: "Mejora tus cosechas"
+    tool: hoe
+    category: poco-comun
+    chance: 18.0
+    material: GOLDEN_HOE
+    levels:
+      1:
+        boost-types: [coins, orbs]
+        boost-amounts: [6, 3]
+      2:
+        boost-types: [coins, orbs]
+        boost-amounts: [10, 5]
+
+  harvest-king:
+    display-name: "Rey de la Cosecha"
+    description: "Dominio sobre los cultivos"
+    tool: hoe
+    category: rara
+    chance: 8.0
+    material: DIAMOND_HOE
+    levels:
+      1:
+        boost-types: [coins, orbs]
+        boost-amounts: [12, 8]
+      2:
+        boost-types: [coins, orbs]
+        boost-amounts: [20, 12]
+
+  nature-blessing:
+    display-name: "Bendicion Natural"
+    description: "La naturaleza te favorece"
+    tool: hoe
+    category: epica
+    chance: 3.5
+    material: HAY_BLOCK
+    levels:
+      1:
+        boost-types: [coins, orbs, exp]
+        boost-amounts: [18, 12, 8]
+      2:
+        boost-types: [coins, orbs, exp]
+        boost-amounts: [30, 20, 15]
+
+  demeter-touch:
+    display-name: "Toque de Demeter"
+    description: "Poder de la diosa de la cosecha"
+    tool: hoe
+    category: legendaria
+    chance: 1.5
+    material: NETHERITE_HOE
+    levels:
+      1:
+        boost-types: [coins, orbs, exp]
+        boost-amounts: [30, 20, 12]
+      2:
+        boost-types: [coins, orbs, exp]
+        boost-amounts: [50, 35, 22]
+
+  garden-of-eden:
+    display-name: "Jardin del Eden"
+    description: "Fertilidad infinita"
+    tool: hoe
+    category: morada
+    chance: 0.5
+    material: BEACON
+    levels:
+      1:
+        boost-types: [coins, orbs, exp]
+        boost-amounts: [40, 30, 18]
+      2:
+        boost-types: [coins, orbs, exp]
+        boost-amounts: [65, 50, 30]
+      3:
+        boost-types: [coins, orbs, exp]
+        boost-amounts: [90, 70, 45]

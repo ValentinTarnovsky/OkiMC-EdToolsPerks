@@ -1,0 +1,69 @@
+name: OkiMC-EdToolsPerks
+version: '2.0.0'
+main: com.okimc.edtoolsperks.EdToolsPerksPlugin
+api-version: '1.20'
+authors:
+  - Snopeyy
+description: Per-player perk system with gacha rolls for EdTools
+website: https://okimc.com
+
+# Required dependency
+depend:
+  - EdTools
+
+# Optional dependencies
+softdepend:
+  - PlaceholderAPI
+
+# Commands
+commands:
+  perks:
+    description: Main command for EdToolsPerks
+    usage: /<command> [subcommand] [args]
+    aliases:
+      - perk
+      - edtoolsperks
+      - etp
+
+# Permissions
+permissions:
+  edtoolsperks.*:
+    description: Full access to EdToolsPerks
+    default: op
+    children:
+      edtoolsperks.use: true
+      edtoolsperks.admin: true
+
+  edtoolsperks.use:
+    description: Basic access to perks system (GUI, info)
+    default: true
+
+  edtoolsperks.admin:
+    description: Admin commands (reload, give rolls, set perks)
+    default: op
+    children:
+      edtoolsperks.admin.reload: true
+      edtoolsperks.admin.rolls: true
+      edtoolsperks.admin.perks: true
+      edtoolsperks.admin.pity: true
+      edtoolsperks.admin.debug: true
+
+  edtoolsperks.admin.reload:
+    description: Permission to reload configurations
+    default: op
+
+  edtoolsperks.admin.rolls:
+    description: Permission to manage player rolls
+    default: op
+
+  edtoolsperks.admin.perks:
+    description: Permission to set/remove player perks
+    default: op
+
+  edtoolsperks.admin.pity:
+    description: Permission to reset pity counters
+    default: op
+
+  edtoolsperks.admin.debug:
+    description: Permission to toggle debug mode
+    default: op

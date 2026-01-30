@@ -1,0 +1,131 @@
+# ========================================
+# EdToolsPerks v2.0.0 - Messages Configuration
+# Author: Snopeyy
+# ========================================
+# Supports color codes: &a, &b, etc.
+# Supports hex colors: &#FF5555
+# Placeholders use {placeholder} format
+
+# Plugin prefix for all messages
+prefix: "&#9945FF&lPerks &8| &7"
+
+# NOTE: Category configuration (colors, names, sounds, glass-material)
+# has been moved to config.yml under the "categories" section.
+
+# ==================== Roll Messages ====================
+# Note: {prefix} is automatically added by the plugin, don't include it here
+rolls:
+  success: "Has obtenido {perk} &7nivel &f{level} &7para tu &f{tool}&7!"
+  pity-triggered: "&#FFD700&lPITY! &7Tu contador de pity ha sido reiniciado."
+  purchased: "Compraste &a{amount} rolls &7por &e{cost}&7. Total: &a{total}"
+
+# ==================== Animation Messages ====================
+animations:
+  enabled: "Animaciones &aactivadas&7."
+  disabled: "Animaciones &cdesactivadas&7."
+
+# ==================== Join Messages ====================
+join:
+  welcome: "Tienes &a{rolls} rolls &7disponibles y &e{perks} perks &7activos."
+
+# ==================== Error Messages ====================
+errors:
+  data-not-loaded: "&cTus datos no han cargado. Intenta de nuevo en unos segundos."
+  not-enough-rolls: "&cNo tienes suficientes rolls. Necesitas &f{required}&c, tienes &f{current}&c."
+  not-enough-currency: "&cNo tienes suficiente dinero. Necesitas &f{required}&c, tienes &f{current}&c."
+  transaction-failed: "&cError en la transaccion. Intenta de nuevo."
+  roll-failed: "&cError al realizar el roll. Intenta de nuevo."
+  no-tool-in-hand: "&cDebes tener una herramienta EdTools en mano para usar este comando."
+
+# ==================== GUI Messages ====================
+gui:
+  # Main GUI
+  no-boost: "&7Sin boost"
+  animation-enabled: "&aActivadas"
+  animation-disabled: "&cDesactivadas"
+  equipped-suffix: "&a[EQUIPADO]"
+
+  # Animation toggle materials (for dynamic GUI items)
+  material-anim-enabled: "LIME_DYE"
+  material-anim-disabled: "GRAY_DYE"
+
+# ==================== Command Messages ====================
+commands:
+  # General
+  players-only: "&cEste comando solo puede ser usado por jugadores."
+  no-permission: "&cNo tienes permiso para hacer esto."
+  specify-player: "&cDebes especificar un jugador."
+  player-not-found: "&cJugador &f{player} &cno encontrado."
+  unknown-subcommand: "&cSubcomando desconocido: &f{command}"
+  invalid-amount: "&cCantidad invalida."
+  invalid-level: "&cNivel invalido."
+  invalid-level-range: "&cEl nivel debe estar entre &f{min} &cy &f{max}&c."
+  perk-not-found: "&cPerk &f{perk} &cno encontrado."
+
+  # Reload
+  reload-success: "&aConfiguraciones recargadas en &f{time}ms&a."
+  reload-failed: "&cError al recargar configuraciones."
+
+  # Info
+  info-header: "&7Informacion de &f{player}&7:"
+  info-rolls: "  &7Rolls: &a{rolls}"
+  info-pity: "  &7Pity: &e{pity}&7/&e{threshold}"
+  info-perks-header: "  &7Perks activos:"
+  info-no-perks: "    &8Ninguno"
+  info-perk-line: "    &7{tool}: {perk} &7(Nivel {level})"
+
+  # Rolls management
+  rolls-added: "Agregaste &a{amount} rolls &7a &f{player}&7. Total: &a{total}"
+  rolls-received: "Recibiste &a{amount} rolls&7! Total: &a{total}"
+  rolls-set: "Estableciste los rolls de &f{player} &7a &a{amount}&7."
+  rolls-removed: "Removiste &c{amount} rolls &7de &f{player}&7. Total: &a{total}"
+  not-enough-rolls-target: "&f{player} &csolo tiene &f{has} &crolls."
+
+  # Usage messages
+  usage-addrolls: "&cUso: /perks addrolls <jugador> <cantidad>"
+  usage-setrolls: "&cUso: /perks setrolls <jugador> <cantidad>"
+  usage-removerolls: "&cUso: /perks removerolls <jugador> <cantidad>"
+  usage-setperk: "&cUso: /perks setperk <jugador> <herramienta> <perk> [nivel]"
+  usage-removeperk: "&cUso: /perks removeperk <jugador> <herramienta>"
+  usage-resetpity: "&cUso: /perks resetpity <jugador>"
+
+  # Perk management
+  perk-set: "Estableciste el perk de &f{player} &7({tool}): {perk} &7nivel &f{level}"
+  perk-removed: "Removiste el perk de &f{player} &7para &f{tool}&7."
+  no-perk-to-remove: "&f{player} &cno tiene un perk para &f{tool}&c."
+
+  # Pity
+  pity-reset: "Reiniciaste el pity de &f{player}&7. (Era: &e{old_value}&7)"
+
+  # Debug
+  debug-enabled: "Modo debug &aactivado&7."
+  debug-disabled: "Modo debug &cdesactivado&7."
+
+  # Help
+  help-header: "&8&m-----------&r &#9945FF&lEdToolsPerks &8&m-----------"
+  help-gui: "&a/perks &8- &7Abre el menu de perks"
+  help-info: "&a/perks info [jugador] &8- &7Ver informacion de perks"
+  help-admin-header: "&7&oComandos de Admin:"
+  help-reload: "&e/perks reload &8- &7Recargar configuraciones"
+  help-addrolls: "&e/perks addrolls <jugador> <cant> &8- &7Agregar rolls"
+  help-setrolls: "&e/perks setrolls <jugador> <cant> &8- &7Establecer rolls"
+  help-removerolls: "&e/perks removerolls <jugador> <cant> &8- &7Remover rolls"
+  help-setperk: "&e/perks setperk <jug> <tool> <perk> [lvl] &8- &7Dar perk"
+  help-removeperk: "&e/perks removeperk <jugador> <tool> &8- &7Remover perk"
+  help-resetpity: "&e/perks resetpity <jugador> &8- &7Reiniciar pity"
+  help-debug: "&e/perks debug &8- &7Activar/desactivar debug"
+
+# ==================== Placeholder Messages ====================
+placeholders:
+  enabled: "&aActivado"
+  disabled: "&cDesactivado"
+  unknown: "&7Desconocido"
+  # Fallback values for placeholders
+  fallback:
+    zero: "0"
+    zero-decimal: "0.0"
+    zero-percent: "0%"
+
+# ==================== Fallback Messages ====================
+fallback:
+  unknown-tool: "Unknown"

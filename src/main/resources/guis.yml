@@ -1,0 +1,353 @@
+# ========================================
+# EdToolsPerks v2.0.0 - GUI Configuration
+# Author: Snopeyy
+# ========================================
+#
+# GUI Structure:
+# - title: Inventory title (supports color codes)
+# - size: Inventory size (9, 18, 27, 36, 45, 54)
+# - items: Map of item definitions
+#
+# Item Structure:
+# item-key:
+#   material: MATERIAL_NAME or texture-BASE64
+#   name: "Display Name"
+#   lore:
+#     - "Line 1"
+#     - "Line 2"
+#   slots: [slot1, slot2] or "0-8" for ranges
+#   glow: true/false         # Optional: Add enchantment glow effect (default: false)
+#   model-data: 12345        # Optional: Custom model data for resource packs (default: 0)
+#   actions:
+#     click:
+#       - "action1"
+#       - "action2"
+#
+# ==================== Item Options ====================
+#
+# glow: true/false
+#   Adds an enchantment glow effect to the item without showing enchantments.
+#   Useful for highlighting important items like roll buttons.
+#   Example:
+#     roll-button:
+#       material: NETHER_STAR
+#       name: "&6&lROLL!"
+#       glow: true
+#       slots: [22]
+#
+# model-data: <number>
+#   Sets custom model data for resource pack textures.
+#   This allows you to use custom item textures from your server's resource pack.
+#   Example:
+#     custom-item:
+#       material: PAPER
+#       name: "&aCustom Icon"
+#       model-data: 10001
+#       slots: [13]
+#
+# ==================== Available Actions ====================
+# - roll:N - Roll N times
+# - open-gui:name - Open another GUI (main, perks-list)
+# - buy-rolls:amount:cost - Purchase rolls
+# - toggle-anim - Toggle animations
+# - close - Close the GUI
+# - back - Go back to previous GUI
+# - [player]command - Run command as player
+# - [console]command - Run command as console
+# - none - No action
+#
+# ==================== Placeholders ====================
+# {player}, {rolls}, {pity}, {pity_threshold},
+# {current_perk}, {tool_name}, {balance}, {anim_status}
+
+# ==================== Main GUI ====================
+main-gui:
+  title: "&#9945FF&lPerks &8- &7{tool_name}"
+  size: 45
+
+  items:
+    # Border (excluding close button at slot 40)
+    border:
+      material: GRAY_STAINED_GLASS_PANE
+      name: " "
+      slots: "0-8,36-39,41-44"
+      actions:
+        click:
+          - none
+
+    # Side borders
+    side-border:
+      material: GRAY_STAINED_GLASS_PANE
+      name: " "
+      slots: [9, 17, 18, 26, 27, 35]
+      actions:
+        click:
+          - none
+
+    # Current Perk Display
+    current-perk:
+      material: ENCHANTED_BOOK
+      name: "&7Perk Actual"
+      lore:
+        - ""
+        - "&7Herramienta: &f{tool_name}"
+        - "&7Perk: {current_perk}"
+        - ""
+        - "&7Click para ver todos los perks"
+      slots: [11]
+      actions:
+        click:
+          - open-gui:perks-list
+
+    # Roll Info
+    roll-info:
+      material: SUNFLOWER
+      name: "&#FFD700&lTus Rolls"
+      lore:
+        - ""
+        - "&7Rolls disponibles: &a{rolls}"
+        - ""
+        - "&7Pity: &e{pity}&7/&e{pity_threshold}"
+        - "&8(Garantiza legendaria al llegar)"
+      slots: [13]
+      actions:
+        click:
+          - none
+
+    # Balance
+    balance-info:
+      material: GOLD_INGOT
+      name: "&e&lTu Balance"
+      lore:
+        - ""
+        - "&7Orbes: &e{balance}"
+        - ""
+        - "&7Usa tus orbes para comprar rolls"
+      slots: [15]
+      actions:
+        click:
+          - none
+
+    # Central Tool Display (replica of tool in hand)
+    tool-display:
+      material: "{tool_material}"
+      name: "{tool_display_name}"
+      lore: "{tool_display_lore}"
+      model-data: "{tool_model_data}"
+      slots: [22]
+      actions:
+        click:
+          - none
+
+    # Roll Button (1 roll)
+    roll-button:
+      material: NETHER_STAR
+      name: "&#9945FF&lROLL!"
+      lore:
+        - ""
+        - "&7Costo: &a1 Roll"
+        - ""
+        - "&eClick para rolear un perk!"
+      slots: [23]
+      glow: true  # Highlight the roll button with enchantment glow
+      actions:
+        click:
+          - roll:1
+
+    # Buy Rolls Options
+    buy-1-roll:
+      material: PAPER
+      name: "&aComprar &f1 Roll"
+      lore:
+        - ""
+        - "&7Precio: &e500 Orbes"
+        - ""
+        - "&eClick para comprar"
+      slots: [29]
+      actions:
+        click:
+          - buy-rolls:1:500
+
+    buy-5-rolls:
+      material: PAPER
+      name: "&aComprar &f5 Rolls"
+      lore:
+        - ""
+        - "&7Precio: &e2250 Orbes"
+        - "&8(10% descuento)"
+        - ""
+        - "&eClick para comprar"
+      slots: [30]
+      actions:
+        click:
+          - buy-rolls:5:2250
+
+    buy-10-rolls:
+      material: PAPER
+      name: "&aComprar &f10 Rolls"
+      lore:
+        - ""
+        - "&7Precio: &e4000 Orbes"
+        - "&8(20% descuento)"
+        - ""
+        - "&eClick para comprar"
+      slots: [31]
+      actions:
+        click:
+          - buy-rolls:10:4000
+
+    buy-25-rolls:
+      material: BOOK
+      name: "&aComprar &f25 Rolls"
+      lore:
+        - ""
+        - "&7Precio: &e8750 Orbes"
+        - "&8(30% descuento)"
+        - ""
+        - "&eClick para comprar"
+      slots: [32]
+      actions:
+        click:
+          - buy-rolls:25:8750
+
+    buy-50-rolls:
+      material: ENCHANTED_BOOK
+      name: "&a&lComprar &f&l50 Rolls"
+      lore:
+        - ""
+        - "&7Precio: &e15000 Orbes"
+        - "&8(40% descuento)"
+        - ""
+        - "&eClick para comprar"
+      slots: [33]
+      actions:
+        click:
+          - buy-rolls:50:15000
+
+    # Toggle Animations
+    toggle-animations:
+      material: "{anim_material}"
+      name: "&7Animaciones"
+      lore:
+        - ""
+        - "&7Estado: {anim_status}"
+        - ""
+        - "&eClick para cambiar"
+      slots: [20]
+      actions:
+        click:
+          - toggle-anim
+
+    # View All Perks
+    view-perks:
+      material: BOOK
+      name: "&b&lVer Todos los Perks"
+      lore:
+        - ""
+        - "&7Ver lista completa de perks"
+        - "&7disponibles para esta herramienta"
+        - ""
+        - "&eClick para ver"
+      slots: [24]
+      actions:
+        click:
+          - open-gui:perks-list
+
+    # Close button
+    close-button:
+      material: BARRIER
+      name: "&c&lCerrar"
+      lore:
+        - ""
+        - "&7Click para cerrar el menu"
+      slots: [40]
+      actions:
+        click:
+          - close
+
+# ==================== Perks List GUI ====================
+perks-list-gui:
+  title: "&#9945FF&lPerks &8- &7Lista de Perks"
+  size: 54
+
+  # Slots where perks will be displayed (auto-populated)
+  perk-slots: "10-16,19-25,28-34,37-43"
+
+  # Template for perk items (fully configurable)
+  # Available placeholders:
+  #   {category_color} - Color code for the perk's category
+  #   {display_name} - Perk's display name
+  #   {equipped_suffix} - Shows "(Equipado)" if equipped, empty otherwise
+  #   {category_name} - Category display name (e.g., "Comun", "Raro")
+  #   {description} - Perk's description from perks.yml
+  #   {level_info} - Dynamic list of all levels with boost info (auto-generated)
+  #   {chance} - Roll chance percentage for this perk
+  #   {equipped_status} - Shows full equipped line if equipped, empty otherwise
+  perk-item-template:
+    name: "{category_color}{display_name}{equipped_suffix}"
+    lore:
+      - "&7Categoria: {category_color}{category_name}"
+      - ""
+      - "{description}"
+      - ""
+      - "&e&lNiveles:"
+      - "{level_info}"
+      - ""
+      - "&7Probabilidad: &f{chance}%"
+      - "{equipped_status}"
+    # Format for each level line in {level_info}
+    level-format: "&8 - &7Nivel {level}: &a{boost}"
+    # Format for the currently equipped level (highlighted)
+    level-current-format: "&8 - &e&lNivel {level}: &a&l{boost} &7(Actual)"
+    # Text shown when perk is equipped
+    equipped-text: "&a&l✓ EQUIPADO"
+
+  items:
+    # Border (excluding back button at slot 49)
+    border:
+      material: PURPLE_STAINED_GLASS_PANE
+      name: " "
+      slots: "0-9,17,18,26,27,35,36,44-48,50-53"
+      actions:
+        click:
+          - none
+
+    # Back button
+    back-button:
+      material: ARROW
+      name: "&c&lVolver"
+      lore:
+        - ""
+        - "&7Volver al menu principal"
+      slots: [49]
+      actions:
+        click:
+          - open-gui:main-gui
+
+    # Info
+    info:
+      material: BOOK
+      name: "&e&lInformacion"
+      lore:
+        - ""
+        - "&7Herramienta: &f{tool_name}"
+        - "&7Total Perks: &a{perk_count}"
+        - ""
+        - "&7Tu perk actual:"
+        - "{current_perk}"
+      slots: [4]
+      actions:
+        click:
+          - none
+
+# ==================== Animation GUI ====================
+# Note: Animation settings are now in config.yml under 'animation' section
+# This GUI config is only used for title matching in click detection
+animation-gui:
+  title: "&8Menu | Mejoras"
+  size: 45
+
+  # No items or settings - animation is fully controlled by AnimationGui.java
+  # and reads configuration from config.yml
+  settings: {}
+  items: {}

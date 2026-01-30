@@ -1,0 +1,225 @@
+# ========================================
+# EdToolsPerks v2.0.0 - Main Configuration
+# Author: Snopeyy
+# ========================================
+
+# Debug mode - enables verbose logging
+debug: false
+
+# ==================== Database ====================
+# Supports: sqlite, mysql
+database:
+  type: sqlite
+
+  # SQLite settings (if type: sqlite)
+  file: edtoolsperks.db
+
+  # MySQL settings (if type: mysql)
+  host: localhost
+  port: 3306
+  name: edtoolsperks
+  username: root
+  password: ""
+
+  # Connection pool settings
+  pool:
+    maximum-pool-size: 10
+    minimum-idle: 2
+    connection-timeout: 30000
+    idle-timeout: 600000
+    max-lifetime: 1800000
+
+# ==================== Categories ====================
+# Define all category properties in one place.
+# You can add, remove, or modify categories here.
+#
+# Each category has:
+#   display-name: Name shown in GUIs and messages
+#   color: Color code for the category (&a, &b, &#HEXCOLOR)
+#   glass-material: Glass pane material for animations
+#   sound: Sound played when rolling this category
+#
+# To add a new category:
+#   1. Add a new entry here with all 4 properties
+#   2. Use the category key in your perks.yml perk definitions
+#
+# To remove a category:
+#   1. Delete the entry here
+#   2. Make sure no perks in perks.yml use that category
+#
+categories:
+  comun:
+    display-name: "Comun"
+    color: "&7"
+    glass-material: GRAY_STAINED_GLASS_PANE
+    sound: ENTITY_EXPERIENCE_ORB_PICKUP
+
+  poco-comun:
+    display-name: "Poco Comun"
+    color: "&a"
+    glass-material: LIME_STAINED_GLASS_PANE
+    sound: ENTITY_PLAYER_LEVELUP
+
+  rara:
+    display-name: "Rara"
+    color: "&b"
+    glass-material: LIGHT_BLUE_STAINED_GLASS_PANE
+    sound: BLOCK_BEACON_POWER_SELECT
+
+  epica:
+    display-name: "Epica"
+    color: "&d"
+    glass-material: MAGENTA_STAINED_GLASS_PANE
+    sound: ENTITY_ENDER_DRAGON_GROWL
+
+  legendaria:
+    display-name: "Legendaria"
+    color: "&6"
+    glass-material: ORANGE_STAINED_GLASS_PANE
+    sound: ENTITY_WITHER_SPAWN
+
+  morada:
+    display-name: "Morada"
+    color: "&#9945FF"
+    glass-material: PURPLE_STAINED_GLASS_PANE
+    sound: UI_TOAST_CHALLENGE_COMPLETE
+
+# ==================== Roll System ====================
+rolls:
+  # Pity system - guaranteed category after X rolls without one
+  pity-threshold: 500
+
+  # Which category is guaranteed when pity triggers
+  # Must match a category key defined above
+  pity-guaranteed-category: morada
+
+# ==================== Currency ====================
+# Which EdTools currency to use for purchasing rolls
+# Common options: orbes, farm-coins, pases
+currency: orbes
+
+# ==================== Interaction ====================
+interaction:
+  # Enable opening GUI by interacting with tool
+  enabled: true
+
+  # Interaction mode for opening GUI
+  # Options: shift_right_click, right_click, shift_left_click, left_click, none
+  mode: shift_right_click
+
+  # Send welcome message on join with roll/perk info
+  send-join-message: false
+
+# ==================== Placeholders ====================
+# Fallback text when player has no perk
+placeholder-no-perk: "Ninguna"
+
+# ==================== Display Names ====================
+# Maps EdTools IDs to friendly display names for GUIs and messages
+
+# Boost/Currency display names
+# Use "enchants" to create ENCHANTMENT boosters (global enchant multiplier)
+# All other boost types create CURRENCY boosters
+boost-display-names:
+  orbes: "Orbes"
+  farm-coins: "Monedas"
+  pases: "Pases"
+  esencias: "Esencias"
+  experiencia: "Experiencia"
+  essence: "Esencia"
+  orbs: "Orbes"
+  coins: "Monedas"
+  exp: "Experiencia"
+  # Enchantment booster keywords (all map to global enchant multiplier)
+  enchants: "Encantamientos"
+  enchant: "Encantamientos"
+  global-enchants: "Encantamientos"
+  encantamientos: "Encantamientos"
+
+# Tool display names
+tool-display-names:
+  crop-tool: "Azada"
+  mining-tool: "Pico"
+  woodcutting-tool: "Hacha"
+  digging-tool: "Pala"
+  fishing-tool: "Cana"
+  hoe: "Azada"
+  pickaxe: "Pico"
+  axe: "Hacha"
+  shovel: "Pala"
+
+# ==================== Boosters ====================
+# Display name shown in EdTools booster list
+booster-display-name: "Perks"
+
+# ==================== Animation ====================
+animation:
+  # Total duration in ticks (20 ticks = 1 second)
+  duration-ticks: 60
+
+  # Default animation state for new players
+  default-enabled: true
+
+  # Time in ticks to display result before returning to main menu
+  result-display-ticks: 60
+
+  # Crystal slots - ring around the center tool
+  crystal-slots: [12, 13, 14, 21, 23, 30, 31, 32]
+
+  # Border slots - outer frame of the GUI
+  border-slots: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 17, 18, 26, 27, 35, 36, 44]
+
+  # Tool slot - center of the GUI where player's tool is displayed
+  tool-slot: 22
+
+  # Crystal materials - randomly cycle through these during animation
+  crystal-materials:
+    - WHITE_STAINED_GLASS_PANE
+    - LIGHT_GRAY_STAINED_GLASS_PANE
+    - GRAY_STAINED_GLASS_PANE
+    - CYAN_STAINED_GLASS_PANE
+    - LIGHT_BLUE_STAINED_GLASS_PANE
+    - BLUE_STAINED_GLASS_PANE
+    - PURPLE_STAINED_GLASS_PANE
+    - MAGENTA_STAINED_GLASS_PANE
+
+  # Border material - static glass around the edge
+  border-material: BLACK_STAINED_GLASS_PANE
+
+  # Sound effects during animation
+  sound-effects:
+    start: BLOCK_BEACON_ACTIVATE
+    tick-interval: 10
+    tick-sound: UI_BUTTON_CLICK
+    tick-volume: 0.5
+
+# ==================== Update Tool ====================
+# Execute a command after a player rolls a perk to update the tool's lore
+# This is needed because EdTools doesn't automatically update the lore
+# Placeholders: {player} = player name
+update-tool:
+  enabled: true
+  command: "edtool enchant {player} update 0"
+
+# ==================== PlaceholderAPI ====================
+# Available placeholders (requires PlaceholderAPI):
+#
+# General:
+#   %edtoolsperks_rolls%              - Player's available rolls
+#   %edtoolsperks_pity%               - Current pity counter
+#   %edtoolsperks_pity_threshold%     - Pity threshold from config
+#   %edtoolsperks_pity_progress%      - Pity progress (count/threshold)
+#   %edtoolsperks_pity_percent%       - Pity progress as percentage
+#   %edtoolsperks_perk_count%         - Number of active perks
+#   %edtoolsperks_animations%         - Animation status (Activado/Desactivado)
+#
+# Tool-specific (replace <tool> with EdTools OmniTool ID):
+#   %edtoolsperks_perk_<tool>%        - Perk name (with color)
+#   %edtoolsperks_perk_<tool>_level%  - Perk level
+#   %edtoolsperks_perk_<tool>_category% - Category name
+#   %edtoolsperks_perk_<tool>_boost%  - Boost description
+#   %edtoolsperks_has_perk_<tool>%    - true/false
+#
+# Examples:
+#   %edtoolsperks_perk_crop-tool%
+#   %edtoolsperks_perk_mining-tool_level%
