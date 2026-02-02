@@ -44,6 +44,8 @@ import java.util.UUID;
  */
 public class PerksCommand implements CommandExecutor {
 
+    private static final String VALID_TOOL_TYPES = "crop-tool, mining-tool, woodcutting-tool, digging-tool, fishing-tool";
+
     private final JavaPlugin plugin;
     private final ConfigManager configManager;
     private final PlayerDataManager playerDataManager;
@@ -449,6 +451,23 @@ public class PerksCommand implements CommandExecutor {
             return true;
         }
 
+        // Verify target has the correct tool in hand
+        ItemStack heldItem = target.getInventory().getItemInMainHand();
+        if (!edToolsIntegration.isOmniTool(heldItem)) {
+            messagesConfig.send(sender, "commands.target-no-tool-in-hand",
+                "player", target.getName());
+            return true;
+        }
+
+        String heldToolType = edToolsIntegration.getToolType(heldItem);
+        if (!heldToolType.equalsIgnoreCase(toolType)) {
+            messagesConfig.send(sender, "commands.target-wrong-tool",
+                "player", target.getName(),
+                "expected", formatToolName(toolType),
+                "actual", formatToolName(heldToolType));
+            return true;
+        }
+
         PlayerData data = playerDataManager.getData(target.getUniqueId());
         if (data == null) {
             messagesConfig.send(sender, "errors.data-not-loaded");
@@ -468,6 +487,9 @@ public class PerksCommand implements CommandExecutor {
         // Apply new boosters
         boosterManager.applyBoosters(target, newPerk);
 
+        // Execute update-tool command to refresh EdTools lore
+        executeUpdateToolCommand(target);
+
         String color = messagesConfig.getCategoryColor(perkDef.category());
         messagesConfig.send(sender, "commands.perk-set",
             "player", target.getName(),
@@ -476,6 +498,37 @@ public class PerksCommand implements CommandExecutor {
             "level", String.valueOf(level));
 
         return true;
+    }
+
+    /**
+     * Executes the update-tool command if enabled.
+     * This is used to refresh EdTools lore after a perk is assigned.
+     *
+     * @param player The player whose tool needs updating
+     */
+    private void executeUpdateToolCommand(Player player) {
+        if (!configManager.isUpdateToolEnabled()) {
+            return;
+        }
+
+        String command = configManager.getUpdateToolCommand();
+        if (command == null || command.isEmpty()) {
+            return;
+        }
+
+        try {
+            // Replace placeholders
+            String processed = command.replace("{player}", player.getName());
+
+            // Execute as console
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), processed);
+
+            if (configManager.isDebug()) {
+                plugin.getLogger().info("[DEBUG] Executed update-tool command: " + processed);
+            }
+        } catch (Exception e) {
+            plugin.getLogger().warning("Error executing update-tool command: " + command);
+        }
     }
 
     /**

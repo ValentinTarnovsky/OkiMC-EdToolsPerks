@@ -61,6 +61,8 @@ commands:
   invalid-level: "&cNivel invalido."
   invalid-level-range: "&cEl nivel debe estar entre &f{min} &cy &f{max}&c."
   perk-not-found: "&cPerk &f{perk} &cno encontrado."
+  target-no-tool-in-hand: "&f{player} &cdebe tener una herramienta EdTools en mano."
+  target-wrong-tool: "&f{player} &ctiene &f{actual} &cen mano, pero se requiere &f{expected}&c."
 
   # Reload
   reload-success: "&aConfiguraciones recargadas en &f{time}ms&a."
