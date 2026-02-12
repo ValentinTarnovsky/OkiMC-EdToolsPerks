@@ -63,6 +63,12 @@ public class EdToolsPerksPlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        if (!new LicenseManager(this).checkLicense()) {
+            getLogger().severe("License Invalid");
+            getServer().getPluginManager().disablePlugin(this);
+            return;
+        }
+
         instance = this;
         long startTime = System.currentTimeMillis();
 
